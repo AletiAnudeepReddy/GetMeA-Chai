@@ -5,7 +5,7 @@ export default function Home() {
     <>
     <div className="flex justify-center flex-col gap-4 items-center text-white h-[44vh]">
       <div className="font-bold flex justify-center items-center gap-1 text-5xl">Buy Me a Chai<span className="mb-1">
-        <img src="/tea.gif" width={88}/>
+        <img className='bg-slate-300 rounded-full w-15 mx-3' src="/tea.gif" width={88}/>
       </span></div>
       <p>
         A crowd funding platform for creators. Get funded by your fans and followers.
