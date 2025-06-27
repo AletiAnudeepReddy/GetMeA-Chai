@@ -20,7 +20,7 @@ export default function Home() {
     </div>
     <div className="bg-white h-1 opacity-10"></div>
     <div className="text-white container mx-auto mb-20">
-      <h1 className="text-3xl font-bold text-center my-16">Your Fans can buy you a Chai</h1>
+      <h2 className="text-3xl font-bold text-center my-16">Your Fans can buy you a Chai</h2>
       <div className="flex gap-5 justify-around">
         <div className="item flex space-y-3 flex-col items-center justify-center">
           <img className="bg-slate-400 rounded-full p-2 text-black" width={88} src="/man.gif" alt=""/>
@@ -41,7 +41,7 @@ export default function Home() {
     </div>
     <div className="bg-white h-1 opacity-10"></div>
     <div className="text-white container mx-auto pb-20 flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold text-center my-16">Your Fans can buy you a Chai</h1>
+      <h2 className="text-3xl font-bold text-center my-16">Learn more about us</h2>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/nIiu4qqtJUk?si=9cxNGowx1d0QzRGL" 
         title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
