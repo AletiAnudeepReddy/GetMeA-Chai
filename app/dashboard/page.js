@@ -7,7 +7,7 @@ const Dashboard = () => {
     const { data: session } = useSession()
         if (session) {
             const router=useRouter()
-            router.push('/login')
+            router.push('/dashboard')
         }
   return (
     <div>
