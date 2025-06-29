@@ -111,7 +111,7 @@ const Dashboard = () => {
 
                     {/* Submit Button  */}
                     <div className="my-6">
-                        <button type="submit" className="block w-full p-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-blue-500 focus:ring-4 focus:outline-none   dark:focus:ring-blue-800 font-medium text-sm">Save</button>
+                        <button type="submit" className="block w-full p-2 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 rounded-lg font-medium text-sm">Save</button>
                     </div>
                 </form>
 
