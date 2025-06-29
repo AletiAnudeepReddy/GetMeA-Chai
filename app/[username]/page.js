@@ -56,7 +56,7 @@ const Username = ({params}) => {
             <input type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Name'/>
             <input type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Message'/>
             <input type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Amount'/>
-            <button type="button" className="text-white mt-1 bg-gradient-to-br from-purple-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Pay</button>
+            <button type="button" className="text-white ml-1 mt-1 bg-gradient-to-br from-purple-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Pay</button>
   
           </div>
           <div className='flex gap-2 mt-2'>
