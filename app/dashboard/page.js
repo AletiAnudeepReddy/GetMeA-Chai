@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useRouter } from 'next/navigation'
-import { fetchuser, updateProfile } from '@/actions/useractions'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Bounce } from 'react-toastify';
+//import { fetchuser, updateProfile } from '@/actions/useractions'
+//import { ToastContainer, toast } from 'react-toastify';
+//import 'react-toastify/dist/ReactToastify.css';
+//import { Bounce } from 'react-toastify';
 
 const Dashboard = () => {
     const { data: session, update } = useSession()
@@ -18,35 +18,35 @@ const Dashboard = () => {
         if (!session) {
             router.push('/login')
         }
-        else {
-            getData()
-        }
-    }, [])
+        //else {
+        //    getData()
+        //}
+    }, [router,session])
 
-    const getData = async () => {
-        let u = await fetchuser(session.user.name)
-        setform(u)
-    }
+    //const getData = async () => {
+    //    let u = await fetchuser(session.user.name)
+    //    setform(u)
+    //}
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = async (e) => {
-
-        let a = await updateProfile(e, session.user.name)
-        toast('Profile Updated', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-            });
-    }
+    //const handleSubmit = async (e) => {
+// 
+        // let a = await updateProfile(e, session.user.name)
+        // toast('Profile Updated', {
+            // position: "top-right",
+            // autoClose: 5000,
+            // hideProgressBar: false,
+            // closeOnClick: true,
+            // pauseOnHover: true,
+            // draggable: true,
+            // progress: undefined,
+            // theme: "light",
+            // transition: Bounce,
+            // });
+    // }
 
 
 
@@ -54,8 +54,8 @@ const Dashboard = () => {
 
     return (
         <>
-            <ToastContainer
-                position="top-right"
+            {/* <ToastContainer */}
+{/*               position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}
                 newestOnTop={false}
@@ -66,12 +66,12 @@ const Dashboard = () => {
                 pauseOnHover
                 theme="light"
             />
-            {/* Same as */}
-            <ToastContainer />
+            
+            <ToastContainer />*/}
             <div className='container mx-auto py-5 px-6 '>
-                <h1 className='text-center my-5 text-3xl font-bold'>Welcome to your Dashboard</h1>
+                <h1 className='text-white text-center my-5 text-3xl font-bold'>Welcome to your Dashboard</h1>
 
-                <form className="max-w-2xl mx-auto" action={handleSubmit}>
+                <form className="max-w-2xl mx-auto">
 
                     <div className='my-2'>
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
