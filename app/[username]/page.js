@@ -1,11 +1,14 @@
 import PaymentPage from '@/components/PaymentPage'
 import React from 'react'
 
-const Username = ({params}) => {
-  return (<>
-    <PaymentPage username={params.username}/>
-    </>
-  )
-}
+const Username = async ({ params }) => {
+  const username = params.username; // `params` is already available here
 
-export default Username
+  return (
+    <>
+      <PaymentPage username={username} />
+    </>
+  );
+};
+
+export default Username;

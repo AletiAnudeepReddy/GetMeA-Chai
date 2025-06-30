@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 
 const PaymentPage = ({ username }) => {
+    const { data: session } = useSession();
     const [paymentform, setpaymentform] = useState({
         name: '',
         message: '',
@@ -13,9 +14,14 @@ const PaymentPage = ({ username }) => {
     });
     const handleChange = (e) => {
         setpaymentform({ ...paymentform, [e.target.name]: e.target.value })
+        console.log(paymentform)
     }
     const pay = async (amount) => {
-        let a = await initiate(amount, username, paymentform)
+        console.log(session.user.name)
+        if (!session){
+            alert('Login required')
+        }
+        let a = await initiate(amount, session?.user.name, paymentform)
         let orderId = a.id
 
         var options = {
@@ -103,9 +109,9 @@ const PaymentPage = ({ username }) => {
 
                     </div>
                     <div className='flex gap-2 mt-2'>
-                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(10)}>Pay ₹10</button>
-                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(20)}>Pay ₹20</button>
-                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(30)}>Pay ₹30</button>
+                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(1000)}>Pay ₹10</button>
+                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(2000)}>Pay ₹20</button>
+                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(3000)}>Pay ₹30</button>
                     </div>
                 </div>
             </div>
