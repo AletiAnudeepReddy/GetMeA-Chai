@@ -13,6 +13,6 @@ export const initiate=async (amount,to_username,paymentfrom)=>{
         currency:"INR",
     }
     let x = await instance.orders.create(options)
-    await Payment.create({oid:x.id,amount:amount,to_username:to_username,name:paymentfrom.name,message:paymentfrom.message})
+    await Payment.create({oid:x.id,amount:amount,to_user:to_username,name:paymentfrom.name,message:paymentfrom.message})
     return x
 }

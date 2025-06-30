@@ -3,15 +3,20 @@ import React from 'react'
 import Script from 'next/script'
 import { initiate } from '@/actions/useractions'
 import { useState } from 'react'
+import { useSession } from 'next-auth/react'
 
-const PaymentPage = ({username}) => {
-    const [paymentform, setpaymentform] = useState({})
-    const handleChange=(e)=>{
-        setpaymentform({...paymentform,[e.target.name]:e.target.value})
+const PaymentPage = ({ username }) => {
+    const [paymentform, setpaymentform] = useState({
+        name: '',
+        message: '',
+        amount: ''
+    });
+    const handleChange = (e) => {
+        setpaymentform({ ...paymentform, [e.target.name]: e.target.value })
     }
     const pay = async (amount) => {
-        let a=await initiate(amount,session?.username,paymentform)
-        let orderId=a.id
+        let a = await initiate(amount, username, paymentform)
+        let orderId = a.id
 
         var options = {
             "key": process.env.KEY_ID, // Enter the Key ID generated from the Dashboard
@@ -91,16 +96,16 @@ const PaymentPage = ({username}) => {
                 <div className='makepayment w-1/2 bg-slate-900 rounded-lg text-white p-10'>
                     <h2 className='text-2xl font-bold my-5'>Make a Payment</h2>
                     <div className='flex gap-2 flex-col'>
-                        <input onChange={handleChange} value={paymentform.name} type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Name' />
-                        <input onChange={handleChange} value={paymentform.message} type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Message' />
-                        <input onChange={handleChange} value={paymentform.amount} type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Amount' />
+                        <input onChange={handleChange} value={paymentform.name} name='name' type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Name' />
+                        <input onChange={handleChange} value={paymentform.message} name='message' type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Message' />
+                        <input onChange={handleChange} value={paymentform.amount} type='text' name='amount' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Amount' />
                         <button type="button" className="text-white ml-1 mt-1 bg-gradient-to-br from-purple-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Pay</button>
 
                     </div>
                     <div className='flex gap-2 mt-2'>
-                        <button className='bg-slate-800 p-3 rounded-lg' onClick={()=>pay(10 )}>Pay ₹10</button>
-                        <button className='bg-slate-800 p-3 rounded-lg' onClick={()=>pay(20 )}>Pay ₹20</button>
-                        <button className='bg-slate-800 p-3 rounded-lg' onClick={()=>pay(30 )}>Pay ₹30</button>
+                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(10)}>Pay ₹10</button>
+                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(20)}>Pay ₹20</button>
+                        <button className='bg-slate-800 p-3 rounded-lg' onClick={() => pay(30)}>Pay ₹30</button>
                     </div>
                 </div>
             </div>
