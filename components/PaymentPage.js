@@ -21,7 +21,7 @@ const PaymentPage = ({ username }) => {
         if (!session){
             alert('Login required')
         }
-        let a = await initiate(amount, session?.user.name, paymentform)
+        let a = await initiate(amount,username, paymentform)
         let orderId = a.id
 
         var options = {

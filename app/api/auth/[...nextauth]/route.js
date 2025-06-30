@@ -44,7 +44,7 @@ export const authoptions =  NextAuth({
           const currentUser =  await User.findOne({email: email}) 
           if(!currentUser){
             // Create a new user
-             const newUser = await User.create({
+             const newUser = await user.create({
               email: user.email, 
               username: user.email.split("@")[0], 
             })   
@@ -53,7 +53,7 @@ export const authoptions =  NextAuth({
          }
       },
       
-      async session({ session, user, token }) {
+      async session({ session, User, token }) {
         const dbUser = await User.findOne({email: session.user.email})
         session.user.name = dbUser.username
         return session
