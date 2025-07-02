@@ -68,7 +68,7 @@ const PaymentPage = ({ username }) => {
         let orderId = a.id
 
         var options = {
-            "key": process.env.NEXT_PUBLIC_KEY_ID, // Enter the Key ID generated from the Dashboard
+            "key": currentUser.razorpayid, // Enter the Key ID generated from the Dashboard
             "amount": amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "Get Me A Chai", //your business name
@@ -118,10 +118,10 @@ const PaymentPage = ({ username }) => {
                     @{username}
                 </div>
                 <div className='text-slate-400'>
-                    Creating Animated art for VTTs
+                    Lets help {username} get a chai!
                 </div>
                 <div className='text-slate-400'>
-                    18,769 members . 99 posts . $18,530/release
+                    {payments.length} Payments. ₹{payments.reduce((a, b) => a + b.amount, 0)} raised
                 </div>
             </div>
             <div className='payment text-white flex flex-row justify-center gap-3 container w-[80%] mx-auto my-10'>
