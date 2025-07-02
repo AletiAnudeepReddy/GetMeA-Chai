@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer className='bg-gray-900 text-white flex items-center justify-center px-4 h-16'>
-        <p className='iext-center'>Copyright &copy; Get me A Chai-All Rights reserved!</p>
+        <p className='iext-center'>Copyright &copy;2025 Get me A Chai-All Rights reserved!</p>
     </footer>
   )
 }
