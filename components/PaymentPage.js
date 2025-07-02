@@ -32,6 +32,7 @@ const PaymentPage = ({ username }) => {
         let dbpayments=await fetchpayments(username);
         setpayments(dbpayments);
         console.log(u,dbpayments)
+        
     }
     const pay = async (amount) => {
         console.log(session.user.name)
@@ -69,7 +70,7 @@ const PaymentPage = ({ username }) => {
         <>
             <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
             <div className='cover w-full relative'>
-                <img className='object-cover w-full h-[350]' src='/reR1AAK.png' alt='' />
+                <img className='object-cover w-full h-[350]' src='/main.gif' alt='' />
                 <div className='absolute -bottom-20 right-[45%] border-white border-4 rounded-full'>
                     <img className='rounded-full' width={165} height={165} src='/images.jpeg' alt='' />
                 </div>
@@ -89,31 +90,14 @@ const PaymentPage = ({ username }) => {
                 <div className='suppoters w-1/2 bg-slate-900 rounded-lg p-10'>
                     <h2 className='text-2xl font-bold my-5'>Supporters</h2>
                     <ul className='mx-5 text-lg'>
-                        <li className='my-3 flex gap-2 items-center'>
+                    {payments.map((p,i)=>{
+                        return <li key={i} className='my-3 flex gap-2 items-center'>
                             <img width={33} src='/avatar.gif' alt='user avatar' />
                             <span>
-                                Anudeep donated <span className='font-bold'>$30</span> with a message "I support you bro. Lots of &hearts;"
+                                {p.name} donated <span className='font-bold'>₹{p.amount}</span> with a message "{p.message}"
                             </span>
                         </li>
-                        <li className='my-3 flex gap-2 items-center'>
-                            <img width={33} src='/avatar.gif' alt='user avatar' />
-                            <span>
-                                Anudeep donated <span className='font-bold'>$30</span> with a message "I support you bro. Lots of &hearts;"
-                            </span>
-                        </li>
-                        <li className='my-3 flex gap-2 items-center'>
-                            <img width={33} src='/avatar.gif' alt='user avatar' />
-                            <span>
-                                Anudeep donated <span className='font-bold'>$30</span> with a message "I support you bro. Lots of &hearts;"
-                            </span>
-                        </li>
-                        <li className='my-3 flex gap-2 items-center'>
-                            <img width={33} src='/avatar.gif' alt='user avatar' />
-                            <span>
-                                Anudeep donated <span className='font-bold'>$30</span> with a message "I support you bro. Lots of &hearts;"
-                            </span>
-                        </li>
-
+                    })}
                     </ul>
                 </div>
                 <div className='makepayment w-1/2 bg-slate-900 rounded-lg text-white p-10'>
@@ -122,7 +106,7 @@ const PaymentPage = ({ username }) => {
                         <input onChange={handleChange} value={paymentform.name} name='name' type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Name' />
                         <input onChange={handleChange} value={paymentform.message} name='message' type='text' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Message' />
                         <input onChange={handleChange} value={paymentform.amount} type='text' name='amount' className='w-full p-3 m-1 rounded-lg bg-slate-800' placeholder='Enter Amount' />
-                        <button type="button" className="text-white ml-1 mt-1 bg-gradient-to-br from-purple-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Pay</button>
+                        <button type="button" onClick={()=>pay(Number.parseInt(paymentform.amount)*100)} className="text-white ml-1 mt-1 bg-gradient-to-br from-purple-600 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2 text-center">Pay</button>
 
                     </div>
                     <div className='flex gap-2 mt-2'>
