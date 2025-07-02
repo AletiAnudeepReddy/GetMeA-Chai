@@ -1,20 +1,37 @@
 "use client"
 import React from 'react'
 import Script from 'next/script'
-import { initiate } from '@/actions/useractions'
+import { fetchuser,fetchpayments, initiate } from '@/actions/useractions'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { useEffect } from 'react'
 
 const PaymentPage = ({ username }) => {
     const { data: session } = useSession();
+    
     const [paymentform, setpaymentform] = useState({
         name: '',
         message: '',
         amount: ''
     });
+    const [currentUser, setcurrentUser] = useState({});
+    const [payments, setpayments] = useState([])
+
+    useEffect(() => {
+      getData()
+    }, [])
+    
+
     const handleChange = (e) => {
         setpaymentform({ ...paymentform, [e.target.name]: e.target.value })
         console.log(paymentform)
+    }
+    const getData= async ()=>{
+        let u=await fetchuser(username);
+        setcurrentUser(u);
+        let dbpayments=await fetchpayments(username);
+        setpayments(dbpayments);
+        console.log(u,dbpayments)
     }
     const pay = async (amount) => {
         console.log(session.user.name)
