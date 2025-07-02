@@ -6,7 +6,9 @@ const UserSchema = new Schema({
   name: { type: String },
   username: { type: String, required: true, unique: true },
   profilepic: { type: String },
-  coverpic: { type: String }
+  coverpic: { type: String },
+  razorpayid:{type:String},
+  razorpaysecret:{type:String},
 }, {
   timestamps: true  // Automatically adds createdAt and updatedAt
 });

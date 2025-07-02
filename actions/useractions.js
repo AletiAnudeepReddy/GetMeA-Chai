@@ -14,7 +14,7 @@ export const initiate = async (amount, to_username, paymentfrom) => {
         currency: "INR",
     }
     let x = await instance.orders.create(options)
-    await Payment.create({ oid: x.id, amount: amount, to_user: to_username, name: paymentfrom.name, message: paymentfrom.message })
+    await Payment.create({ oid: x.id, amount: amount/100, to_user: to_username, name: paymentfrom.name, message: paymentfrom.message })
     return x
 }
 export const fetchuser = async (username) => {
@@ -27,6 +27,17 @@ export const fetchuser = async (username) => {
 
 export const fetchpayments = async (username) => {
     await connectDB();
-    let p = await Payment.find({ to_user: username }).sort({ amount: -1 }).lean()
+    let p = await Payment.find({ to_user: username,done:true}).sort({ amount: -1 }).lean()
     return p
+}
+export const updateProfile=async (data,oldusername)=>{
+    await connectDB();
+    let ndata=Object.fromEntries(data);
+    if(oldusername!==ndata.username){
+        let u=await User.findOne({username:ndata.username})
+        if (u){
+            return {error:"Username Already Exists"}
+        }
+    }
+    await User.updateOne({email:ndata.email},ndata)
 }

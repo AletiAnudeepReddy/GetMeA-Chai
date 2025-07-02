@@ -71,8 +71,8 @@ const PaymentPage = ({ username }) => {
             <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
             <div className='cover w-full relative'>
                 <img className='object-cover w-full h-[350]' src='/main.gif' alt='' />
-                <div className='absolute -bottom-20 right-[45%] border-white border-4 rounded-full'>
-                    <img className='rounded-full' width={165} height={165} src='/images.jpeg' alt='' />
+                <div className='absolute -bottom-20 right-[45%] border-white border-4 overflow-hidden rounded-full'>
+                    <img className='overflow-hidden rounded-full' width={165} height={165} src='/images.jpeg' alt='' />
                 </div>
             </div>
             <div className='info flex flex-col justify-center items-center mt-24 gap-2'>
@@ -90,6 +90,7 @@ const PaymentPage = ({ username }) => {
                 <div className='suppoters w-1/2 bg-slate-900 rounded-lg p-10'>
                     <h2 className='text-2xl font-bold my-5'>Supporters</h2>
                     <ul className='mx-5 text-lg'>
+                    {payments.length==0 && <li>No Payments yet</li>}
                     {payments.map((p,i)=>{
                         return <li key={i} className='my-3 flex gap-2 items-center'>
                             <img width={33} src='/avatar.gif' alt='user avatar' />
