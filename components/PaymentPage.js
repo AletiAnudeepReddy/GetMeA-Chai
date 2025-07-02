@@ -5,6 +5,12 @@ import { fetchuser,fetchpayments, initiate } from '@/actions/useractions'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Bounce } from 'react-toastify';
+import { useRouter } from 'next/navigation'
+import { notFound } from "next/navigation"
 
 const PaymentPage = ({ username }) => {
     const { data: session } = useSession();
@@ -16,9 +22,29 @@ const PaymentPage = ({ username }) => {
     });
     const [currentUser, setcurrentUser] = useState({});
     const [payments, setpayments] = useState([])
+    const searchParams = useSearchParams()
+    const router = useRouter()
 
     useEffect(() => {
       getData()
+    }, [])
+
+    useEffect(() => {
+        if(searchParams.get("paymentdone") == "true"){
+        toast('Thanks for your donation!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+        }
+        router.push(`/${username}`)
+     
     }, [])
     
 
@@ -31,7 +57,6 @@ const PaymentPage = ({ username }) => {
         setcurrentUser(u);
         let dbpayments=await fetchpayments(username);
         setpayments(dbpayments);
-        console.log(u,dbpayments)
         
     }
     const pay = async (amount) => {
@@ -68,6 +93,19 @@ const PaymentPage = ({ username }) => {
     }
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light" />
+            {/* Same as */}
+            <ToastContainer />
             <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
             <div className='cover w-full relative'>
                 <img className='object-cover w-full h-[350]' src='/main.gif' alt='' />
